@@ -176,11 +176,11 @@ PREDIKCIJA: NEXT / lottery_ticket_v3
 ----------------------------------------------------------------------
   model za NEXT:        pruned_40
   final train epoha:    43
-  Top-7 brojeva:        (11, 17, 22, 23, 25, 31, 36)
+  Top-7 brojeva:        (11, x, 22, y, 25, z, 36)
 
   Rang svih 39 brojeva po verovatnoci (broj:p):
-    25:0.956   36:0.951   22:0.949   31:0.884   11:0.868
-    23:0.826   17:0.794   34:0.792   35:0.743   30:0.605
+    25:0.956   36:0.951   22:0.949    z:0.884   11:0.868
+     y:0.826    x:0.794   34:0.792   35:0.743   30:0.605
      2:0.469   32:0.402    3:0.265   13:0.169   10:0.169
     16:0.166   18:0.135   27:0.108    7:0.102   38:0.101
      9:0.093   20:0.058   33:0.045   29:0.043    1:0.008
@@ -197,9 +197,11 @@ TXT sacuvan -> /Loto-7-39-Srbija-pruning/lottery_ticket_pruning_v3.txt
 
 """
 Analiza experiment v3 (run + trening tok)
-Wrapper je odradio pun run, a sad imam i kompletan trening log po epohama, što je najvredniji deo za analizu.
+Wrapper je odradio pun run, a sad imam i kompletan trening log po epohama, 
+što je najvredniji deo za analizu.
 
-Determinizam potvrđen: isti seed=39, CPU, feature_dim=405, train/val/test = 3694/462/462. Sve reproducibilno.
+Determinizam potvrđen: 
+isti seed=39, CPU, feature_dim=405, train/val/test = 3694/462/462. Sve reproducibilno.
 
 Baseline trening tok (ovo je ključno):
 loss pada glatko: 1.138 → 0.131 kroz 60 epoha — mreža lepo uči trening skup.
@@ -214,8 +216,10 @@ sprečava da uzmem overfit-ovanu poslednju epohu (ep. 60: val 1.3052, test 1.238
 Bez ovog mehanizma v3 bi pao kao v2.
 
 Pruning u kontekstu treninga: 
-zanimljivo je da jaki pruning modeli biraju vrlo rane epohe — 70% → epoha 2, 80% → epoha 3, 90% → epoha 10. 
-To znači da sparse mreže brzo dostignu svoj maksimum pa odmah krenu u overfit; best-epoch ih spasava od propadanja. 
+zanimljivo je da jaki pruning modeli biraju vrlo rane epohe — 
+70% → epoha 2, 80% → epoha 3, 90% → epoha 10. 
+To znači da sparse mreže brzo dostignu svoj maksimum pa odmah krenu u overfit; 
+best-epoch ih spasava od propadanja. 
 Zbog toga 90% sa epohom 10 i dalje daje test@7 = 1.2835.
 
 Sumarno za ovaj run:
