@@ -236,5 +236,6 @@ u v3 sam hits_difference i combined_metrics izbacio kao manje bitne,
 a dodao baseline_history_v3.png, 
 jer v3 ima best-epoch validaciju i tu je najvažnije videti overfit kroz epohe.
 
-v3 ima drugačiju analitiku: više fokus na val/test i best-epoch, manje na dekorativne poredbene grafike.
+v3 ima drugačiju analitiku: 
+više fokus na val/test i best-epoch, manje na dekorativne poredbene grafike.
 """
