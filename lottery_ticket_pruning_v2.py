@@ -57,7 +57,7 @@ torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-CSV_PATH = "/Users/4c/Desktop/GHQ/data/loto7_4626_k44.csv"
+CSV_PATH = "/data/loto7_4626_k44.csv"
 RESULTS_JSON = os.path.join(HERE, "experiment_results_v2.json")
 TXT_OUT = os.path.join(HERE, "lottery_ticket_pruning_v2.txt")
 
@@ -496,11 +496,11 @@ PRUNING REZULTATI
 
 PREDIKCIJA: NEXT / lottery_ticket_v2 (baseline model)
 ============================================================
-  Top-7 brojeva:        (3, 16, 17, 18, 20, 29, 32)
+  Top-7 brojeva:        (3, x, 17, y, 20, z, 32)
 
   Rang svih 39 brojeva po verovatnoci (broj: p):
-    32:0.951   18:0.896   20:0.617   29:0.452    3:0.433
-    17:0.274   16:0.228    6:0.217    9:0.212   34:0.192
+    32:0.951    y:0.896   20:0.617    z:0.452    3:0.433
+    17:0.274    x:0.228    6:0.217    9:0.212   34:0.192
      2:0.156   13:0.117   30:0.099    1:0.097   19:0.096
     27:0.093   35:0.092   23:0.086   38:0.080   26:0.064
      5:0.055   10:0.052    4:0.034   25:0.029    7:0.025
@@ -543,8 +543,8 @@ tj. većina parametara ne doprinosi stvarno.
 rezultati se ponašaju kao slabi/noisy signal.
 
 Glavna NEXT predikcija iz baseline modela je:
-(3, 16, 17, 18, 20, 29, 32)
-Najveće verovatnoće: 32=0.951, 18=0.896, 20=0.617, zatim 29, 3, 17, 16.
+(3, 16, 17, y, 20, 29, 32)
+Najveće verovatnoće: 32=0.951, y=0.896, 20=0.617, zatim z, 3, 17, x.
 
 Zaključak: tehnički skripta radi kako treba. 
 Analitički rezultat je slab: 
@@ -558,22 +558,25 @@ nego uglavnom uči stabilne obrasce/frekventnost u podacima.
 
 """
 lottery_ticket_pruning_v2.py — jezgro: 
-Loto 7/39 multi-label mreža 195→300→100→39, lottery-ticket pruning (0–95%), metrika pogodaka@7, NEXT predikcija top-7. 
+Loto 7/39 multi-label mreža 195→300→100→39, 
+lottery-ticket pruning (0–95%), metrika pogodaka@7, NEXT predikcija top-7. 
 Determinizam seed=39, bez shuffle-a, CPU.
 
 visualize_results_v2.py — 
-grafici nad results/experiment_results_v2.json (pogodaka@7 vs pruning, redukcija parametara, razlika, kombinovano, tabela) → images/*_v2.png.
+grafici nad results/experiment_results_v2.json 
+(pogodaka@7 vs pruning, redukcija parametara, razlika, kombinovano, tabela) → images/*_v2.png.
 
 run_experiment_v2.py — wrapper sa potisnutim warning-ima.
 
 Ključne odluke: 
-ulaz = zadnjih LAG=5 kola kao multi-hot; cilj = sledeće kolo; test = poslednjih 462 izvlačenja vremenski; 
+ulaz = zadnjih LAG=5 kola kao multi-hot; 
+cilj = sledeće kolo; test = poslednjih 462 izvlačenja vremenski; 
 metrika pogodaka@7 sa slučajnom referencom 7·7/39≈1.26.
 
 
 
 Glavni eksperiment:
-python lottery_ticket_pruning_v2.pyili kraći wrapper:
+python lottery_ticket_pruning_v2.py ili kraći wrapper:
 
 python run_experiment_v2.py
 Tek kad se napravi experiment_results_v2.json, pokreni grafike:
