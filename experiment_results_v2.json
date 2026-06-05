@@ -1,0 +1,70 @@
+{
+    "baseline_hits": 1.2359307359307359,
+    "random_reference_hits": 1.2564102564102564,
+    "pruning_results": [
+        {
+            "pruning_percentage": 0,
+            "actual_pruning_percentage": 0.4760930212518444,
+            "avg_hits": 1.2424242424242424,
+            "hits_difference": 0.006493506493506551,
+            "remaining_parameters": 92397,
+            "total_parameters": 92839
+        },
+        {
+            "pruning_percentage": 20,
+            "actual_pruning_percentage": 20.381520697120827,
+            "avg_hits": 1.2186147186147187,
+            "hits_difference": -0.017316017316017174,
+            "remaining_parameters": 73917,
+            "total_parameters": 92839
+        },
+        {
+            "pruning_percentage": 40,
+            "actual_pruning_percentage": 40.2869483729898,
+            "avg_hits": 1.1926406926406927,
+            "hits_difference": -0.043290043290043156,
+            "remaining_parameters": 55437,
+            "total_parameters": 92839
+        },
+        {
+            "pruning_percentage": 60,
+            "actual_pruning_percentage": 60.192376048858776,
+            "avg_hits": 1.2207792207792207,
+            "hits_difference": -0.015151515151515138,
+            "remaining_parameters": 36957,
+            "total_parameters": 92839
+        },
+        {
+            "pruning_percentage": 70,
+            "actual_pruning_percentage": 70.14508988679327,
+            "avg_hits": 1.158008658008658,
+            "hits_difference": -0.07792207792207795,
+            "remaining_parameters": 27717,
+            "total_parameters": 92839
+        },
+        {
+            "pruning_percentage": 80,
+            "actual_pruning_percentage": 80.09780372472775,
+            "avg_hits": 1.2337662337662338,
+            "hits_difference": -0.0021645021645020357,
+            "remaining_parameters": 18477,
+            "total_parameters": 92839
+        },
+        {
+            "pruning_percentage": 90,
+            "actual_pruning_percentage": 90.05051756266225,
+            "avg_hits": 1.20995670995671,
+            "hits_difference": -0.025974025974025983,
+            "remaining_parameters": 9237,
+            "total_parameters": 92839
+        },
+        {
+            "pruning_percentage": 95,
+            "actual_pruning_percentage": 95.02687448162949,
+            "avg_hits": 1.2272727272727273,
+            "hits_difference": -0.008658008658008587,
+            "remaining_parameters": 4617,
+            "total_parameters": 92839
+        }
+    ]
+}
