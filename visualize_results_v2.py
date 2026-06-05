@@ -222,6 +222,9 @@ Analitički, vizualizacije potvrđuju isto što i TXT:
 nema pruning nivoa koji jasno probija slučajnu referencu,
 80% pruning skoro čuva baseline rezultat sa samo ~20% parametara,
 70% pruning je najlošiji pad,
-cela kriva je „ravna i šumna", što znači da lottery-ticket pruning ne otkriva jak prediktivni signal, nego mreža uglavnom nema šta stabilno da nauči.
-Fajl je dobar kao završna prezentacija rezultata: grafici jasno pokazuju i model compression i činjenicu da prediktivni dobitak nije dobijen.
+cela kriva je „ravna i šumna", 
+što znači da lottery-ticket pruning ne otkriva jak prediktivni signal, 
+nego mreža uglavnom nema šta stabilno da nauči.
+Fajl je dobar kao završna prezentacija rezultata: 
+grafici jasno pokazuju i model compression i činjenicu da prediktivni dobitak nije dobijen.
 """
