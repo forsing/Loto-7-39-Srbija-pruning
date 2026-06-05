@@ -58,7 +58,7 @@ torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-CSV_PATH = "/Users/4c/Desktop/GHQ/data/loto7_4626_k44.csv"
+CSV_PATH = "/data/loto7_4626_k44.csv"
 RESULTS_JSON = os.path.join(HERE, "experiment_results_v3.json")
 TXT_OUT = os.path.join(HERE, "lottery_ticket_pruning_v3.txt")
 
@@ -651,7 +651,7 @@ Pruned: val@7=1.3312  test@7=1.2835  best_epoch=10
 Preostalo weight parametara: 7,073 (5.0% weight-a)
 Pruned: val@7=1.3333  test@7=1.2229  best_epoch=6
 
-JSON sacuvan -> /Users/4c/Desktop/GHQ/KlasicniRegresori/Loto-7-39-Srbija-pruning/experiment_results_v3.json
+JSON sacuvan -> /Loto-7-39-Srbija-pruning/experiment_results_v3.json
 
 Lottery Ticket Hypothesis - Loto 7/39 (v3, bez frekvencije)
 ======================================================================
@@ -690,11 +690,11 @@ PREDIKCIJA: NEXT / lottery_ticket_v3
 ----------------------------------------------------------------------
   model za NEXT:        pruned_40
   final train epoha:    43
-  Top-7 brojeva:        (11, 17, 22, 23, 25, 31, 36)
+  Top-7 brojeva:        (11, x, 22, y, 25, z, 36)
 
   Rang svih 39 brojeva po verovatnoci (broj:p):
-    25:0.956   36:0.951   22:0.949   31:0.884   11:0.868
-    23:0.826   17:0.794   34:0.792   35:0.743   30:0.605
+    25:0.956   36:0.951   22:0.949    z:0.884   11:0.868
+     y:0.826    x:0.794   34:0.792   35:0.743   30:0.605
      2:0.469   32:0.402    3:0.265   13:0.169   10:0.169
     16:0.166   18:0.135   27:0.108    7:0.102   38:0.101
      9:0.093   20:0.058   33:0.045   29:0.043    1:0.008
@@ -748,7 +748,8 @@ To je najjači lottery-ticket signal: mala mreža zadržava ili poboljšava perf
 Zaključak za pruning: 
 v3 je uspeo bolje od v2. 
 Bez frekvencijskih feature-a, pruning ipak izvlači slab sekvencijalni signal. 
-Najjači test rezultat je 20%, najmetodološki izabran model za NEXT je 40%, a najinteresantniji sparse ticket je 90%.
+Najjači test rezultat je 20%, najmetodološki izabran model za NEXT je 40%, 
+a najinteresantniji sparse ticket je 90%.
 """
 
 
@@ -759,14 +760,16 @@ Najjači test rezultat je 20%, najmetodološki izabran model za NEXT je 40%, a n
 lutrija je u suštini i.i.d.; 
 teorijski maksimum je oko slučajne reference (1.256). 
 Niko ne može garantovati stabilan „dobitak" iznad toga. 
-Ali u mom v2 postoji jedna prava, popravljiva greška koja besplatno daje realan dobitak, plus par jačih izbora.
+Ali u mom v2 postoji jedna prava, popravljiva greška koja besplatno daje realan dobitak, 
+plus par jačih izbora.
 
 Glavni nalaz iz log-a: 
-v2 koristi poslednju epohu (epoch 40), a model overfituje — loss pada (0.51→0.25) dok hits@7 posle ~epohe 3–5 opada. 
-Epoha 3 je imala 1.2965, a uzeta epoha 40 samo 1.2359. Dakle biranjem najbolje epohe već dobijaš ~1.29, što probija slučajnu referencu.
+v2 koristi poslednju epohu (epoch 40), 
+a model overfituje — loss pada (0.51→0.25) dok hits@7 posle ~epohe 3–5 opada. 
+Epoha 3 je imala 1.2965, a uzeta epoha 40 samo 1.2359. 
+Dakle biranjem najbolje epohe već dobijam ~1.29, što probija slučajnu referencu.
 
 Najbolja optimizacija:
-
 Best-epoch selection preko zasebnog validacionog skupa (ne test) — 
 vraća najbolji model, ne overfit-ovani poslednji. (najveći realan dobitak)
 pos_weight ≈ 32/7 u BCEWithLogitsLoss — ispravlja disbalans (samo 7 od 39 su jedinice); 
@@ -802,7 +805,8 @@ i NEXT predikcija bez frequency feature-a.
 
 
 Bez frekvencije: nema rolling frequency, nema brojanja pojavljivanja kao osnove.
-Feature-i su: zadnjih 8 kola kao sekvenca, transition poslednja dva kola, gap od poslednje pojave, lex sekvenca i dX prirastaji.
+Feature-i su: zadnjih 8 kola kao sekvenca, 
+transition poslednja dva kola, gap od poslednje pojave, lex sekvenca i dX prirastaji.
 Dodato je train/val/test vremensko sečenje.
 Model bira best epoch po validaciji, umesto da uzima poslednju epohu i overfituje.
 Loss koristi pos_weight=(39-7)/7.
@@ -816,14 +820,4 @@ python visualize_results_v3.py
 
 Ili umesto glavnog:
 python run_experiment_v3.py
-"""
-
-
-
-
-
-
-
-"""
-Lottery Ticket Hypothesis - Neural Network Pruning
 """
